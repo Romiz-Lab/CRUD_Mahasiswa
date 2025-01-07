@@ -4,20 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 
+
 class ProductController extends Controller
 {
     /**
-     * 
+     *
      */
-    public function index() : View
+    public function index(Request $request): View
     {
-        return view('products.index', [
-            'products' => Product::latest()->paginate(3)
-        ]);
+        $search = $request->input('search');
+        $query = Product::query();
+
+        if ($search) {
+            $query->where('name', 'LIKE', "%{$search}%")
+                  ->orWhere('code', 'LIKE', "%{$search}%");
+        }
+
+        $products = $query->latest()->paginate(3);
+
+        return view('products.index', compact('products', 'search'));
     }
 
     /**
@@ -77,4 +87,5 @@ class ProductController extends Controller
         return redirect()->route('products.index')
                 ->withSuccess('Product is deleted successfully.');
     }
+
 }
