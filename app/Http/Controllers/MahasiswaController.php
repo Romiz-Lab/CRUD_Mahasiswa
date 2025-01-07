@@ -49,25 +49,25 @@ class MahasiswaController extends Controller
         return view('mahasiswa.show', compact('mahasiswa'));
     }
 
-    // public function edit(Mahasiswa $mahasiswa): View
-    // {
-    //     return view('mahasiswa.edit', compact('mahasiswa'));
-    // }
+    public function edit(Mahasiswa $mahasiswa): View
+    {
+        return view('mahasiswa.edit', compact('mahasiswa'));
+    }
 
-    // public function update(Request $request, Mahasiswa $mahasiswa): RedirectResponse
-    // {
-    //     $request->validate([
-    //         'nim' => 'required|unique:mahasiswas,nim,' . $mahasiswa->id,
-    //         'nama' => 'required',
-    //         'jurusan' => 'required',
-    //         'alamat' => 'required',
-    //     ]);
+    public function update(Request $request, Mahasiswa $mahasiswa): RedirectResponse
+    {
+        $request->validate([
+            'nim' => 'required|unique:mahasiswas,nim,' . $mahasiswa->id,
+            'nama' => 'required',
+            'jurusan' => 'required',
+            'alamat' => 'required',
+        ]);
 
-    //     $mahasiswa->update($request->all());
+        $mahasiswa->update($request->all());
 
-    //     return redirect()->route('mahasiswa.index')
-    //                      ->with('success', 'Data mahasiswa berhasil diperbarui.');
-    // }
+        return redirect()->route('mahasiswa.index')
+                         ->with('success', 'Data mahasiswa berhasil diperbarui.');
+    }
 
     public function destroy(Mahasiswa $mahasiswa): RedirectResponse
     {

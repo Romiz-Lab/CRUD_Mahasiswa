@@ -46,9 +46,9 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <!-- <a href="{{ route('mahasiswa.show', $mahasiswa->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Show</a> -->
+                                    <a href="{{ route('mahasiswa.show', $mahasiswa->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-eye"></i> Show</a>
 
-                                    <!-- <a href="{{ route('mahasiswa.edit', $mahasiswa->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a> -->
+                                    <a href="{{ route('mahasiswa.edit', $mahasiswa->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Edit</a>
 
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="bi bi-trash"></i> Delete</button>
                                 </form>
